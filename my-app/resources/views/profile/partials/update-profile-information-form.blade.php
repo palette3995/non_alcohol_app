@@ -24,6 +24,25 @@
         </div>
 
         <div>
+            <x-input-label for="age" :value="__('Age')" />
+            <x-text-input id="age" name="age" type="number" class="mt-1 block w-full" :value="old('age', $user->age)" required autofocus autocomplete="age" />
+            <x-input-error class="mt-2" :messages="$errors->get('age')" />
+        </div>
+
+        <div>
+            <x-input-label for="gender" :value="__('Gender')" />
+            <x-select-input name="gender">
+                <option value="{{ $user->gender }}" selected>{{ \App\Enums\GenderEnum::genderType($user->gender) }}</option>
+                @foreach ( \App\Enums\GenderEnum::getAllGender() as $gender)
+                    @if ($gender != $user->gender)
+                        <option value="{{ $gender }}">{{ \App\Enums\GenderEnum::genderType($gender) }}</option>
+                    @endif
+                @endforeach
+            </x-select-input>
+            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
