@@ -11,6 +11,11 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                 </div>
+                <div class="p-6 text-gray-900">
+                    @hasanyrole('admin')
+                        <a href="{{ route('user.index')}}">{{ __("User Index") }}</a>
+                    @endhasanyrole
+                </div>
             </div>
         </div>
     </div>
